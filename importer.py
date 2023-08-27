@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine, insert
 from sqlalchemy.orm import Session
 
-from db import t_klines
+from db import t_kline
 
 
 class KLineSymbol(Enum):
@@ -48,9 +48,9 @@ if not os.path.exists(data_path):
     print(data_path, "not exist")
     sys.exit(255)
 
-t_klines.name = "t_klines_{}_{}".format(kline_symbol.value, kline_interval.value)
-if not engine.dialect.has_table(engine.connect(), t_klines.name):
-    t_klines.create(engine)
+t_kline.name = "t_kline_{}_{}".format(kline_symbol.value, kline_interval.value)
+if not engine.dialect.has_table(engine.connect(), t_kline.name):
+    t_kline.create(engine)
 
 files = sorted(filter(lambda x: x not in (".", ".."), glob.glob("{}/*".format(data_path))))
 for file in files:
@@ -59,13 +59,13 @@ for file in files:
     if len(klines) == 0:
         continue
 
-    results = db_session.query(t_klines).filter(t_klines.c.open_time == klines[0][0]).all()
+    results = db_session.query(t_kline).filter(t_kline.c.open_time == klines[0][0]).all()
     if len(results) != 0:
         print("kline data", file, "imported before, skip")
         continue
 
     db_session.execute(
-        insert(t_klines),
+        insert(t_kline),
         [
             {
                 "open_time": kline[0],

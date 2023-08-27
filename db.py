@@ -6,7 +6,7 @@ from sqlalchemy import Column, Integer, BigInteger, Numeric, String, Table, Meta
 
 metadata = MetaData()
 
-t_klines = Table(
+t_kline = Table(
     '', metadata,
     Column("open_time", BigInteger, primary_key=True),
     Column("close_time", BigInteger),
