@@ -74,11 +74,11 @@ for file in files:
                 "close_price": decimal.Decimal(kline[2]),
                 "high_price": decimal.Decimal(kline[3]),
                 "low_price": decimal.Decimal(kline[4]),
-                "base_volumn": decimal.Decimal(kline[5]),
-                "quote_volumn": decimal.Decimal(kline[7]),
+                "base_volume": decimal.Decimal(kline[5]),
+                "quote_volume": decimal.Decimal(kline[7]),
                 "trades_count": kline[8],
-                "taker_buy_base_volumn": decimal.Decimal(kline[9]),
-                "taker_buy_quote_volumn": decimal.Decimal(kline[10]),
+                "taker_buy_base_volume": decimal.Decimal(kline[9]),
+                "taker_buy_quote_volume": decimal.Decimal(kline[10]),
                 "reserved": kline[11],
             }
             for kline in klines
